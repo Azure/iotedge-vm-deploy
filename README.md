@@ -8,7 +8,7 @@ ARM template to deploy a VM with IoT Edge pre-installed (via cloud-init)
 ## Azure CLI command to deploy IoT Edge enabled VM
 
 ```bash
-# Creat resource group
+# Create resource group
  az group create --name cig2 --location westus2
 
 # Create VM, install IoT Edge and associate with IoT Hub device identity
