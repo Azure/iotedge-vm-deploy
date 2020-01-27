@@ -210,7 +210,7 @@
   "outputs": {
     "Public SSH": {
       "type": "string",
-      "value": "[concat(reference('ssh ', resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))).osProfile.adminUsername, '@', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))).dnsSettings.fqdn)]"
+      "value": "[concat('ssh ', reference(resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))).osProfile.adminUsername, '@', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))).dnsSettings.fqdn)]"
     }
   }
 }
