@@ -13,17 +13,13 @@ The ARM template visualized for exploration
 ## Azure CLI command to deploy IoT Edge enabled VM
 
 ```bash
-# Create resource group
- az group create --name cig2 --location westus2
-
-# Create VM, install IoT Edge and associate with IoT Hub device identity
 az group deployment create \
   --name edgeVm \
-  --resource-group cig2 \
-  --template-uri "https://raw.githubusercontent.com/veyalla/edge-vm-deploy/master/edgeDeploy.json" \
-  --parameters dnsLabelPrefix='testv1' \
-  --parameters adminUsername='veyalla' \
-  --parameters deviceConnectionString=$dcs \
+  --resource-group replace-with-rg-name \
+  --template-uri "https://aka.ms/iotedge-vm-deploy" \
+  --parameters dnsLabelPrefix='my-edge-vm1' \
+  --parameters adminUsername='azureuser' \
+  --parameters deviceConnectionString=$(az iot hub device-identity show-connection-string --device-id replace-with-device-name --hub-name replace-with-hub-name -o tsv) \
   --parameters authenticationType='sshPublicKey' \
   --parameters adminPasswordOrKey="$(< ~/.ssh/id_rsa.pub)"
 ```
