@@ -137,10 +137,7 @@
         "subnets": [{
           "name": "[variables('subnet1Name')]",
           "properties": {
-            "addressPrefix": "[variables('subnet1Prefix')]",
-            "networkSecurityGroup": {
-              "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
-            }
+            "addressPrefix": "[variables('subnet1Prefix')]"
           }
         }]
       }
