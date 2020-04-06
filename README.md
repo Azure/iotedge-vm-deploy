@@ -1,4 +1,9 @@
 # iotedge-vm-deploy
+
+Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-ubuntuvm?WT.mc_id=github-iotedgevmdeploy-pdecarlo)
+
+## ARM Template to deploy IoT Edge enabled VM
+
 ARM template to deploy a VM with IoT Edge pre-installed (via cloud-init)
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2Fmaster%2FedgeDeploy.json" target="_blank">
