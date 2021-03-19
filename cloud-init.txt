@@ -40,7 +40,7 @@ runcmd:
         apt install aziot-identity-service=1.2.0~rc4-1
         apt install aziot-edge=1.2.0~rc4-1 
 
-        if [ ! -z ',variables('dcs'),' ]; then
+        if [ ! -z ', variables('dcs'), ' ]; then
           mkdir /etc/aziot
           wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2.0-rc4/config.toml -O /etc/aziot/config.toml
           sed -i "s#\(connection_string = \).*#\1\"', variables('dcs'), '\"#g" /etc/aziot/config.toml
