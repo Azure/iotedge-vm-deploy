@@ -37,8 +37,8 @@ runcmd:
           sleep 3
         done
   
-        apt install aziot-identity-service=1.2.0~rc4-1
-        apt install aziot-edge=1.2.0~rc4-1 
+        apt install aziot-identity-service=1.2.0~rc4~device-update-tutorial-1
+        apt install aziot-edge=1.2.0~rc4~device-update-tutorial-1 
 
         mkdir /etc/aziot
         wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2.0-rc4/config.toml -O /etc/aziot/config.toml
