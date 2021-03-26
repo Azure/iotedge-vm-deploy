@@ -27,21 +27,31 @@ apt:
         -----END PGP PUBLIC KEY BLOCK----- 
 packages:
   - moby-cli
-  - libiothsm-std
   - moby-engine
 runcmd:
+  - dcs="', variables('dcs'),'"
   - |
       set -x
       (
+        echo "Device connection string: $dcs"
+
         # Wait for docker daemon to start
         while [ $(ps -ef | grep -v grep | grep docker | wc -l) -le 0 ]; do 
           sleep 3
         done
+  
+        apt install aziot-identity-service=1.2.0~rc4~device-update-tutorial-1
+        apt install aziot-edge=1.2.0~rc4~device-update-tutorial-1 
 
-        # Prevent iotedge from starting before the device connection string is set in config.yaml
-        sudo ln -s /dev/null /etc/systemd/system/iotedge.service
-        apt install iotedge
-        sed -i "s#\(device_connection_string: \).*#\1\"', variables('dcs'), '\"#g" /etc/iotedge/config.yaml 
-        systemctl unmask iotedge
-        systemctl start iotedge
+        if [ ! -z $dcs ]; then
+          mkdir /etc/aziot
+          wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2.0-rc4/config.toml -O /etc/aziot/config.toml
+          sed -i "s#\(connection_string = \).*#\1\"$dcs\"#g" /etc/aziot/config.toml
+          iotedge config apply -c /etc/aziot/config.toml
+        fi
+
+        apt install -y deviceupdate-agent 
+        apt install -y deliveryoptimization-plugin-apt
+        systemctl restart adu-agent
       ) &
+
