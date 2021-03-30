@@ -39,9 +39,12 @@ runcmd:
         while [ $(ps -ef | grep -v grep | grep docker | wc -l) -le 0 ]; do 
           sleep 3
         done
-  
-        apt install aziot-identity-service=1.2.0~rc4-1
-        apt install aziot-edge=1.2.0~rc4-1 
+
+        sudo wget -O aziot-identity-service_1.2.0_latest_amd64.deb "https://1dot2bugbash.blob.core.windows.net/packages/aziot-identity-service_1.2.0_latest_amd64.deb"
+        sudo wget -O aziot-edge_1.2.0_latest_amd64.deb "https://1dot2bugbash.blob.core.windows.net/packages/aziot-edge_1.2.0_latest_amd64.deb"
+        
+        sudo dpkg -i aziot-identity-service_1.2.0_latest_amd64.deb
+        sudo dpkg -i aziot-edge_1.2.0_latest_amd64.deb
 
         if [ ! -z $dcs ]; then
           mkdir /etc/aziot
