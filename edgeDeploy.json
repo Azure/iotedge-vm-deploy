@@ -119,7 +119,7 @@
       "name": "[variables('networkSecurityGroupName')]",
       "location": "[resourceGroup().location]",
       "properties": {
-        "securityRules": "[if(parameters('allowSsh'), variables('sshRule'), variables('noRule')]"
+        "securityRules": "[if(parameters('allowSsh'), variables('sshRule'), variables('noRule'))]"
       }
     },
     {
