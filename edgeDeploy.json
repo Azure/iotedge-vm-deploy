@@ -53,7 +53,7 @@
     },
     "allowSsh": {
       "type": "bool",
-      "defaultValue": "true",
+      "defaultValue": true,
       "metadata": {
         "description": "Allow SSH traffic through the firewall"
       }
