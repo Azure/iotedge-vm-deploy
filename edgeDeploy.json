@@ -64,7 +64,7 @@
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
     "nicName": "[concat('nic-', uniquestring(parameters('dnsLabelPrefix')))]",
-    "vmName": "[concat('vm-', uniquestring(parameters('dnsLabelPrefix')))]",
+    "vmName": "[parameters('dnsLabelPrefix')]",
     "virtualNetworkName": "[concat('vnet-', uniquestring(parameters('dnsLabelPrefix')))]",
     "publicIPAddressName": "[concat('ip-', parameters('dnsLabelPrefix'))]",
     "addressPrefix": "10.0.0.0/16",
