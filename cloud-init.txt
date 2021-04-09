@@ -40,15 +40,12 @@ runcmd:
           sleep 3
         done
 
-        sudo wget -O aziot-identity-service_1.2.0_latest_amd64.deb "https://1dot2bugbash.blob.core.windows.net/packages/aziot-identity-service_1.2.0_latest_amd64.deb"
-        sudo wget -O aziot-edge_1.2.0_latest_amd64.deb "https://1dot2bugbash.blob.core.windows.net/packages/aziot-edge_1.2.0_latest_amd64.deb"
-        
-        sudo dpkg -i aziot-identity-service_1.2.0_latest_amd64.deb
-        sudo dpkg -i aziot-edge_1.2.0_latest_amd64.deb
+        apt install aziot-identity-service=1.2.0
+        apt install aziot-edge=1.2.0
 
         if [ ! -z $dcs ]; then
           mkdir /etc/aziot
-          wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2.0-rc4/config.toml -O /etc/aziot/config.toml
+          wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2.0/config.toml -O /etc/aziot/config.toml
           sed -i "s#\(connection_string = \).*#\1\"$dcs\"#g" /etc/aziot/config.toml
           iotedge config apply -c /etc/aziot/config.toml
         fi
