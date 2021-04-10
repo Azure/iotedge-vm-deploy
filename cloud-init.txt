@@ -40,8 +40,8 @@ runcmd:
           sleep 3
         done
 
-        apt install aziot-identity-service=1.2.0
-        apt install aziot-edge=1.2.0
+        apt install aziot-identity-service=1.2.0-1
+        apt install aziot-edge=1.2.0-1
 
         if [ ! -z $dcs ]; then
           mkdir /etc/aziot
