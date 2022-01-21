@@ -30,7 +30,7 @@
     },
     "ubuntuOSVersion": {
       "type": "string",
-      "defaultValue": "20.04-LTS",
+      "defaultValue": "20_04-lts",
       "metadata": {
         "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
       }
@@ -62,7 +62,7 @@
   },
   "variables": {
     "imagePublisher": "Canonical",
-    "imageOffer": "UbuntuServer",
+    "imageOffer": "0001-com-ubuntu-server-focal",
     "nicName": "[concat('nic-', uniquestring(parameters('dnsLabelPrefix')))]",
     "vmName": "[parameters('dnsLabelPrefix')]",
     "virtualNetworkName": "[concat('vnet-', uniquestring(parameters('dnsLabelPrefix')))]",
