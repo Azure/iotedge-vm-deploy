@@ -40,7 +40,7 @@ runcmd:
           sleep 3
         done
 
-        apt install aziot-edge
+        apt install -y aziot-edge
 
         if [ ! -z $dcs ]; then
           mkdir /etc/aziot
