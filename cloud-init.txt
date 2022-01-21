@@ -4,7 +4,7 @@ apt:
   preserve_sources_list: true
   sources:
     msft.list:
-      source: "deb https://packages.microsoft.com/ubuntu/18.04/multiarch/prod bionic main"
+      source: "deb https://packages.microsoft.com/ubuntu/20.04/prod focal main"
       key: |
         -----BEGIN PGP PUBLIC KEY BLOCK-----
         Version: GnuPG v1.4.7 (GNU/Linux)
@@ -40,8 +40,7 @@ runcmd:
           sleep 3
         done
 
-        apt install aziot-identity-service=1.2.0-1
-        apt install aziot-edge=1.2.0-1
+        apt install aziot-edge
 
         if [ ! -z $dcs ]; then
           mkdir /etc/aziot
