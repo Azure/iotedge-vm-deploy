@@ -6,35 +6,35 @@ Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.c
 
 ARM template to deploy a VM with IoT Edge pre-installed (via cloud-init)
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.2%2FedgeDeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.3%2FedgeDeploy.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png" />
 </a>
 
 The ARM template visualized for exploration
 
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.2%2FedgeDeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.3%2FedgeDeploy.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png" /></a>
 
 ## Azure CLI command to deploy IoT Edge enabled VM
 
-To deploy an VM with IoT Edge 1.2 version pre-installed but **not provisioned**:
+To deploy an VM with IoT Edge 1.3 version pre-installed but **not provisioned**:
 
 ```bash
 az group deployment create \
   --resource-group replace-with-rg-name \
-  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2/edgeDeploy.json" \
+  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.3/edgeDeploy.json" \
   --parameters dnsLabelPrefix='replace-with-edge-unique-name' \
   --parameters adminUsername='azureuser' \
   --parameters authenticationType='sshPublicKey' \
   --parameters adminPasswordOrKey="$(< ~/.ssh/id_rsa.pub)"
 ```
 
-To deploy an VM with IoT Edge 1.2 version pre-installed **and provisioned** with the provided connection string:
+To deploy an VM with IoT Edge 1.3 version pre-installed **and provisioned** with the provided connection string:
 
 ```bash
 az group deployment create \
   --resource-group replace-with-rg-name \
-  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2/edgeDeploy.json" \
+  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.3/edgeDeploy.json" \
   --parameters dnsLabelPrefix='replace-with-edge-unique-name' \
   --parameters adminUsername='azureuser' \
   --parameters deviceConnectionString=$(az iot hub device-identity show-connection-string --device-id replace-with-device-name --hub-name replace-with-hub-name -o tsv) \

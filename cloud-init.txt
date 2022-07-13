@@ -43,7 +43,7 @@ runcmd:
 
         if [ ! -z $dcs ]; then
           mkdir /etc/aziot
-          wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2/config.toml -O /etc/aziot/config.toml
+          wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.3/config.toml -O /etc/aziot/config.toml
           sed -i "s#\(connection_string = \).*#\1\"$dcs\"#g" /etc/aziot/config.toml
           iotedge config apply -c /etc/aziot/config.toml
         fi
