@@ -1,27 +1,29 @@
-# iotedge-vm-deploy
+# iotedge-vm-deploy - Release 1.1
 
-Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-ubuntuvm?WT.mc_id=github-iotedgevmdeploy-pdecarlo)
+Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-ubuntuvm)
 
 ## ARM Template to deploy IoT Edge enabled VM
 
 ARM template to deploy a VM with IoT Edge pre-installed (via cloud-init)
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2Fmaster%2FedgeDeploy.json" target="_blank">
+The following Azure Resource Templates are for IoT Edge release 1.1, a Long Term Support (LTS) release.
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.1%2FedgeDeploy.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png" />
 </a>
 
 The ARM template visualized for exploration
 
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2Fmaster%2FedgeDeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.1%2FedgeDeploy.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png" /></a>
 
 ## Azure CLI command to deploy IoT Edge enabled VM
 
 ```bash
-az group deployment create \
+az deployment group create \
   --name edgeVm \
   --resource-group replace-with-rg-name \
-  --template-uri "https://aka.ms/iotedge-vm-deploy" \
+  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.1/edgeDeploy.json" \
   --parameters dnsLabelPrefix='my-edge-vm1' \
   --parameters adminUsername='azureuser' \
   --parameters deviceConnectionString=$(az iot hub device-identity show-connection-string --device-id replace-with-device-name --hub-name replace-with-hub-name -o tsv) \
