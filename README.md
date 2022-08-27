@@ -24,7 +24,7 @@ The commands below deploy a VM with IoT Edge pre-installed **and provisioned** w
 ### Using an ARM template
 
 ```bash
-az group deployment create \
+az deployment group create \
   --name edgeVm \
   --resource-group replace-with-rg-name \
   --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/master/edgeDeploy.json" \
@@ -35,13 +35,13 @@ az group deployment create \
   --parameters deviceConnectionString=$(az iot hub device-identity show-connection-string --device-id replace-with-device-name --hub-name replace-with-hub-name -o tsv)
 ```
 
-### Using an Azure Bicep file
+### Using a local Azure Bicep file
 
 ```bash
-az group deployment create \
+az deployment group create \
   --name edgeVm \
   --resource-group replace-with-rg-name \
-  --template-file "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/master/edgeDeploy.bicep" \
+  --template-file "./edgeDeploy.bicep" \
   --parameters dnsLabelPrefix='my-edge-vm1' \
   --parameters adminUsername='azureuser' \
   --parameters authenticationType='sshPublicKey' \
