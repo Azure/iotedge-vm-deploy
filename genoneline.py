@@ -30,7 +30,7 @@ def convertToOneAzureBicepLine(file):
     content = content.replace("\r\n", "\\n")
     content = content.replace("\n", "\\n")
     content = content.replace("\t", "\\t")
-    content = content.replace("'", "\\\'")
+    content = content.replace("'", "\\'")
 
     # replace {{{ }}} with variable names
     return re.sub(r"{{{([^}]*)}}}", r"${\1}", content)

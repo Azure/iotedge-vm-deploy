@@ -30,7 +30,6 @@ packages:
   - moby-engine
 runcmd:
   - dcs="{{{dcs}}}"
-  - echo "DCS = $dcs"
   - |
       set -x
       (
