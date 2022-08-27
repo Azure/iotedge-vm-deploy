@@ -1,8 +1,10 @@
 # iotedge-vm-deploy
 
-Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-ubuntuvm?WT.mc_id=github-iotedgevmdeploy-pdecarlo)
+Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-ubuntuvm)
 
 ## ARM Template to deploy IoT Edge enabled VM
+
+The following Azure Resource Templates are for IoT Edge release 1.4.
 
 ARM template to deploy a VM with IoT Edge pre-installed (via cloud-init)
 
@@ -15,18 +17,36 @@ The ARM template visualized for exploration
 <a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2Fmaster%2FedgeDeploy.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png" /></a>
 
-## Azure CLI command to deploy IoT Edge enabled VM
+## Azure CLI command to deploy IoT Edge enabled VM 
+
+The commands below deploy a VM with IoT Edge pre-installed **and provisioned** with the provided connection string. To deploy a VM with IoT Edge pre-installed but **not provisioned**, do not include the `--parameters deviceConnectionString=...` portion of the command.
+
+### Using an ARM template
 
 ```bash
 az group deployment create \
   --name edgeVm \
   --resource-group replace-with-rg-name \
-  --template-uri "https://aka.ms/iotedge-vm-deploy" \
+  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/master/edgeDeploy.json" \
   --parameters dnsLabelPrefix='my-edge-vm1' \
   --parameters adminUsername='azureuser' \
-  --parameters deviceConnectionString=$(az iot hub device-identity show-connection-string --device-id replace-with-device-name --hub-name replace-with-hub-name -o tsv) \
   --parameters authenticationType='sshPublicKey' \
-  --parameters adminPasswordOrKey="$(< ~/.ssh/id_rsa.pub)"
+  --parameters adminPasswordOrKey="$(< ~/.ssh/id_rsa.pub)" \
+  --parameters deviceConnectionString=$(az iot hub device-identity show-connection-string --device-id replace-with-device-name --hub-name replace-with-hub-name -o tsv)
+```
+
+### Using an Azure Bicep file
+
+```bash
+az group deployment create \
+  --name edgeVm \
+  --resource-group replace-with-rg-name \
+  --template-file "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/master/edgeDeploy.bicep" \
+  --parameters dnsLabelPrefix='my-edge-vm1' \
+  --parameters adminUsername='azureuser' \
+  --parameters authenticationType='sshPublicKey' \
+  --parameters adminPasswordOrKey="$(< ~/.ssh/id_rsa.pub)" \
+  --parameters deviceConnectionString=$(az iot hub device-identity show-connection-string --device-id replace-with-device-name --hub-name replace-with-hub-name -o tsv)
 ```
 
 # Contributing

@@ -4,7 +4,7 @@ apt:
   preserve_sources_list: true
   sources:
     msft.list:
-      source: "deb https://packages.microsoft.com/ubuntu/18.04/multiarch/prod bionic main"
+      source: "deb https://packages.microsoft.com/ubuntu/20.04/prod focal main"
       key: |
         -----BEGIN PGP PUBLIC KEY BLOCK-----
         Version: GnuPG v1.4.7 (GNU/Linux)
@@ -27,21 +27,25 @@ apt:
         -----END PGP PUBLIC KEY BLOCK----- 
 packages:
   - moby-cli
-  - libiothsm-std
   - moby-engine
 runcmd:
+  - dcs="', variables('dcs'),'"
   - |
       set -x
       (
+
         # Wait for docker daemon to start
         while [ $(ps -ef | grep -v grep | grep docker | wc -l) -le 0 ]; do 
           sleep 3
         done
 
-        # Prevent iotedge from starting before the device connection string is set in config.yaml
-        sudo ln -s /dev/null /etc/systemd/system/iotedge.service
-        apt install iotedge
-        sed -i "s#\(device_connection_string: \).*#\1\"', variables('dcs'), '\"#g" /etc/iotedge/config.yaml 
-        systemctl unmask iotedge
-        systemctl start iotedge
+        apt install -y aziot-edge=1.4.0-1
+
+        if [ ! -z $dcs ]; then
+          mkdir /etc/aziot
+          wget https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/master/config.toml -O /etc/aziot/config.toml
+          sed -i "s#\(connection_string = \).*#\1\"${dcs}\"#g" /etc/aziot/config.toml
+          iotedge config apply -c /etc/aziot/config.toml
+        fi
+
       ) &
