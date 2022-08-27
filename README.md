@@ -1,4 +1,4 @@
-# iotedge-vm-deploy
+# iotedge-vm-deploy - Release 1.4
 
 Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-ubuntuvm)
 
@@ -8,13 +8,13 @@ The following Azure Resource Templates are for IoT Edge release 1.4.
 
 ARM template to deploy a VM with IoT Edge pre-installed (via cloud-init)
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2Fmaster%2FedgeDeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.4%2FedgeDeploy.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png" />
 </a>
 
 The ARM template visualized for exploration
 
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2Fmaster%2FedgeDeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fiotedge-vm-deploy%2F1.4%2FedgeDeploy.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png" /></a>
 
 ## Azure CLI command to deploy IoT Edge enabled VM 
@@ -27,7 +27,7 @@ The commands below deploy a VM with IoT Edge pre-installed **and provisioned** w
 az deployment group create \
   --name edgeVm \
   --resource-group replace-with-rg-name \
-  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/master/edgeDeploy.json" \
+  --template-uri "https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.4/edgeDeploy.json" \
   --parameters dnsLabelPrefix='my-edge-vm1' \
   --parameters adminUsername='azureuser' \
   --parameters authenticationType='sshPublicKey' \
