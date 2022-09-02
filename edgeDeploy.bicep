@@ -25,6 +25,7 @@ param vmSize string = 'Standard_DS1_v2'
 param ubuntuOSVersion string = '20_04-lts'
 
 @description('IoT Edge Device Connection String')
+@secure()
 param deviceConnectionString string
 
 @description('Allow SSH traffic through the firewall')
