@@ -4,7 +4,7 @@ Detailed documentation is available on [Microsoft Docs](https://docs.microsoft.c
 
 ## ARM Template to deploy IoT Edge enabled VM
 
-The following Azure Resource Templates are for IoT Edge release 1.4.
+The following Azure Resource Templates are for IoT Edge release 1.5.
 
 ARM template to deploy a VM with IoT Edge pre-installed (via cloud-init)
 
